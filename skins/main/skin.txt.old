@@ -1,0 +1,254 @@
+############# 
+# MAIN SKIN
+#############
+
+############# GENERAL LAYOUT
+
+[panel.master]
+0,0,987,511
+normal=MIXBLENDR_UP.png
+
+# the area with the position indicator
+[panel.positiongrid]
+276,6,704,26
+normal=MIXBLENDR_UP.png
+font=Helvetica
+tooltip=marks time from left to right in bars and beats
+
+# the entire scrollable area, including channel strips
+# and region area for all channels, transparent:
+[panel.workarea]
+7,32,973,404
+
+# the area covering all channelstrips, transparent:
+[panel.all_channelstrips]
+7,32,269,408
+parent=workarea
+
+# the area with trackname/volume/pan/... (for one track), with background 
+# image:
+[panel.channelstrip]
+7,32,269,102
+normal=MIXBLENDR_UP.png
+parent=all_channelstrips
+
+# the area covering all regions (scrolls horizontally):
+[panel.all_regions]
+276,32,704,102
+parent=workarea
+
+# regions for one track, transparent:
+[panel.regions]
+276,32,704,102
+parent=all_regions
+
+# the background for the wave regions
+[panel.wave_container]
+-1,-1,703,102
+bg_left=MIXBLENDR_special.png,277,32
+bg_lr_tile=MIXBLENDR_special.png,286,32
+bg_right=MIXBLENDR_special.png,971,32
+
+# the background for a selected wave region
+[panel.wave_container_sel]
+-1,-1,703,102
+bg_left=MIXBLENDR_special.png,277,133
+bg_lr_tile=MIXBLENDR_special.png,286,133
+bg_right=MIXBLENDR_special.png,971,133
+
+############# DEFAULTS
+[default]
+normal=MIXBLENDR_UP.png
+hover=MIXBLENDR_OVR.png
+down=MIXBLENDR_DN.png
+font=Helvetica
+
+############# TOP-LEVEL CONTROLS
+[toggle.snap]
+18,10,106,16 
+# use "normal", "down", and "hover" definitions from [default]
+tooltip=control whether audio regions snap to nearest beat or are dragged freely
+
+[button.zoomIn]
+221,6,28,26
+tooltip=zoom the display in
+
+[button.zoomOut]
+249,6,27,26
+# use "normal", "down", and "hover" definitions from [default]
+tooltip=zoom the display out
+
+
+############# CHANNELSTRIP CONTROLS
+[button.trackUp]
+6,42,29,17
+# use "normal", "down", and "hover" definitions from [default]
+parent=channelstrip
+tooltip=move this track up
+
+[button.trackDown]
+6,59,29,17
+# use "normal", "down", and "hover" definitions from [default]
+parent=channelstrip
+tooltip=move this track down
+
+[label.trackDisplay]
+43,51,218,15 
+# use "normal", "down", and "hover" definitions from [default]
+parent=channelstrip
+tooltip=shows information about this track
+
+[button.trackRemove]
+265,32,10,10
+parent=channelstrip
+tooltip=remove this track
+
+[knob.knob]
+0,0,20,20
+normal=MIXBLENDR_special.png,32,140
+hover=MIXBLENDR_special.png,32,140
+down=MIXBLENDR_special.png,32,140
+# knobs do not need a parent
+
+[trough.volume]
+26,84,87,20
+parent=channelstrip
+# in DOWN and HOVER images, there is no trough
+hover=MIXBLENDR_UP.png
+down=MIXBLENDR_UP.png
+# for the level meter
+progress=MIXBLENDR_special.png,26,81
+knob=knob
+tooltip=control this track's volume
+
+[LED.volume_clip]
+# "real" would be 86, but use 85 so that it "jumps"
+112,85,22,15 
+# use "normal" definition from [default]
+# use "down" definition from MIXBLENDR_special.png:
+down=MIXBLENDR_special.png,112,62
+parent=channelstrip
+
+[trough.pan]
+26,107,87,20
+parent=channelstrip
+knob=knob
+# in DOWN and HOVER images, there is no trough
+hover=MIXBLENDR_UP.png
+down=MIXBLENDR_UP.png
+tooltip=control this track's placement left to right
+
+[toggle.mute]
+141,105,43,25 
+#blink=MIXBLENDR_special.png
+down=MIXBLENDR_special.png
+parent=channelstrip
+tooltip=mute (turn off) this track
+
+[toggle.solo]
+184,105,42,25
+#blink=MIXBLENDR_special.png
+down=MIXBLENDR_special.png
+parent=channelstrip
+tooltip=solo this track - turn off all other tracks
+
+[toggle.auto]
+226,105,43,25
+#blink=MIXBLENDR_special.png
+down=MIXBLENDR_special.png
+parent=channelstrip
+tooltip=automation - record moves of the controls for this track
+
+[button.effectSelect]
+183,90,70,10
+parent=channelstrip
+tooltip=select an audio effect for this track
+
+[button.effectSettings]
+253,90,14,9
+parent=channelstrip
+tooltip=change effect settings
+
+############# BUTTON BAR
+
+[button.add]
+20,449,50,42
+# use "normal", "down", and "hover" definitions from [default]
+tooltip=add an additional track
+
+[toggle.grab]
+70,449,51,42
+tooltip=use this to grab audio and move it around
+
+[toggle.scissor]
+121,449,51,42
+tooltip=use this to cut audio into pieces
+
+[button.rewind]
+186,449,42,42
+tooltip=rewind playback
+
+# the pause button that the play button switches to during playback
+[knob.pause]
+0,0,42,42
+normal=MIXBLENDR_special.png,178,449
+hover=MIXBLENDR_special.png,227,449
+down=MIXBLENDR_special.png,277,449
+tooltip=pause the song
+
+[button.play]
+228,449,42,42
+tooltip=play the song
+
+[button.fastForward]
+271,449,43,42
+tooltip=fast forward
+
+[toggle.loop]
+314,449,45,42
+tooltip=turn on/off looping of playback between loop points
+
+[label.transportDisplay]
+375,457,96,27
+tooltip=shows location of the song
+#, you can change by dragging up and down
+
+[edit.tempo]
+475,461,48,11
+tooltip=shows the tempo of the song
+#, you can change by dragging up and down
+
+# will just display "TEMPO" or "TIME"
+[label.tempo] 
+475,472,48,11
+tooltip=shows the time display mode. double-click to toggle display modes.
+
+[label.loopDisplay]
+525,461,67,11
+tooltip=displays the loop points - when you reach the second point, playback starts again at the first point
+
+# will just display "LOOP ON" or "LOOP OFF":
+[label.loopOnOff]
+525,472,67,11
+
+# save button
+[button.save]
+596,449,42,42
+normal=MIXBLENDR_special.png,178,449
+hover=MIXBLENDR_special.png,227,449
+down=MIXBLENDR_special.png,277,449
+tooltip=save the song
+
+
+############# POSITION GRID
+[knob.position]
+0,0,23,26
+normal=MIXBLENDR_special.png,80,140
+hover=MIXBLENDR_special.png,80,140
+down=MIXBLENDR_special.png,80,140
+tooltip=shows where you are in the song
+
+
+############# FOR TESTING
+#[button.testLoadDef]
+#129,8,92,24

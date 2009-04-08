@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="private" author="false" classpath="E:\Tritonus\EclipseProject\tritonus\dist\tritonus_mp3-0.3.7.jar;E:\JDKs\libs\jorbis-0.0.15.jar;E:\Tritonus\EclipseProject\tritonus\dist\tritonus_jorbis-0.3.7.jar;E:\JDKs\libs\jogg-0.0.7.jar;E:\Tritonus\EclipseProject\tritonus\dist\tritonus_src-0.3.7.jar;E:\JDKs\libs\javalayer.jar;E:\Tritonus\EclipseProject\tritonus\dist\tritonus_share-0.3.7.jar" destdir="../Release/docs" doctitle="mixblendr applet documentation" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="com.mixblendr.skin,com.mixblendr.effects,com.mixblendr.automation,com.mixblendr.gui.main,com.mixblendr.audio,com.mixblendr.gui.graph,com.mixblendr.test,com.mixblendr.util" source="1.5" sourcepath="src" splitindex="true" use="true" version="true"/>
+    </target>
+</project>

@@ -1,0 +1,195 @@
+# MAIN SMALL SKIN
+############# GENERAL LAYOUT
+
+[panel.master]
+0,0,812,421
+normal=MIXBLENDR_UP.png
+
+# the area with the position indicator, transparent
+[panel.positiongrid]
+227,6,579,21
+font=Helvetica
+
+# the entire scrollable area, including channel strips
+# and region area for all channels, transparent:
+[panel.workarea]
+6,27,800,330
+
+# the area covering all channelstrips, transparent:
+[panel.all_channelstrips]
+6,27,221,330
+parent=workarea
+
+# the area with trackname/volume/pan/... (for one track), with background 
+# image:
+[panel.channelstrip]
+6,27,221,84
+normal=MIXBLENDR_UP.png
+parent=all_channelstrips
+
+# the area covering all regions (scrolls horizontally):
+[panel.all_regions]
+227,27,579,330
+parent=workarea
+
+# regions for one track, transparent:
+[panel.regions]
+227,27,579,84
+parent=all_regions
+
+# the background for the wave regions
+[panel.wave_container]
+-1,-1,580,84
+bg_left=MIXBLENDR_special.png,180,21
+bg_lr_tile=MIXBLENDR_special.png,190,21
+bg_right=MIXBLENDR_special.png,750,21
+
+
+############# DEFAULTS
+[default]
+normal=MIXBLENDR_UP.png
+hover=MIXBLENDR_OVR.png
+down=MIXBLENDR_DN.png
+font=Helvetica
+
+
+############# TOP-LEVEL CONTROLS
+[toggle.snap]
+17,9,86,14
+# use "normal", "down", and "hover" definitions from [default]
+
+[button.zoomIn]
+184,6,21,21
+# use "normal", "down", and "hover" definitions from [default]
+
+[button.zoomOut]
+205,6,21,21
+# use "normal", "down", and "hover" definitions from [default]
+
+
+############# CHANNELSTRIP CONTROLS
+[button.trackUp]
+6,35,23,14
+# use "normal", "down", and "hover" definitions from [default]
+parent=channelstrip
+
+[button.trackDown]
+6,48,23,13
+# use "normal", "down", and "hover" definitions from [default]
+parent=channelstrip
+
+[label.trackDisplay]
+37,45,178,8 
+# use "normal", "down", and "hover" definitions from [default]
+parent=channelstrip
+
+[knob.knob]
+0,0,19,19
+normal=MIXBLENDR_special.png,15,41
+hover=MIXBLENDR_special.png,15,21
+down=MIXBLENDR_special.png,15,21
+# knobs do not need a parent
+
+[trough.volume]
+18,68,81,19
+parent=channelstrip
+# for the level meter
+progress=MIXBLENDR_special.png,14,93
+knob=knob
+tooltip=Scroll to change the track level
+
+[LED.volume_clip]
+92,71,19,14
+# use "normal" definition from [default]
+# use "down" definition from MIXBLENDR_special.png:
+down=MIXBLENDR_special.png,87,65
+parent=channelstrip
+
+[trough.pan]
+18,87,81,19
+parent=channelstrip
+knob=knob
+tooltip=Scroll to change the track pan
+
+[toggle.mute]
+120,90,30,15
+parent=channelstrip
+
+[toggle.solo]
+154,90,30,15
+blink=MIXBLENDR_special.png,8,190
+parent=channelstrip
+
+[toggle.auto]
+189,90,30,15
+parent=channelstrip
+
+[button.effectSelect]
+150,73,60,10
+parent=channelstrip
+
+[button.effectSettings]
+210,73,11,11
+parent=channelstrip
+
+
+############# BUTTON BAR
+
+[button.add]
+17,369,41,34
+# use "normal", "down", and "hover" definitions from [default]
+tooltip=Add a new track
+
+[toggle.grab]
+58,369,41,34
+tooltip=Move regions
+
+[toggle.scissor]
+99,369,41,34
+tooltip=Cut a region
+
+[button.rewind]
+151,369,35,35
+
+[toggle.play]
+187,369,35,35
+# use PAUSE button from special
+down=MIXBLENDR_special.png,88,220
+tooltip=Pressing this control will start playback
+tooltip.down=Pressing this control will pause playback
+
+[button.fastForward]
+221,369,34,34
+
+[toggle.loop]
+255,369,35,34
+
+[label.transportDisplay]
+313,379,75,16
+
+[edit.tempo]
+393,377,38,10
+tooltip=Edit the tempo
+
+# will just display "TEMPO":
+[label.tempo]
+393,388,38,10
+
+[label.loopDisplay]
+432,377,46,10
+
+# will just display "LOOP ON" or "LOOP OFF":
+[label.loopOnOff]
+432,389,46,9
+
+############# POSITION GRID
+[knob.position]
+0,0,18,20
+normal=MIXBLENDR_special.png,75,21
+hover=MIXBLENDR_special.png,75,21
+down=MIXBLENDR_special.png,75,21
+
+
+############# FOR TESTING
+[button.testLoadDef]
+108,6,73,21

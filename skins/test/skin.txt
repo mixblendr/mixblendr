@@ -1,0 +1,190 @@
+# TEST SKIN
+############# GENERAL LAYOUT
+
+[panel.master]
+0,0,1159,597
+normal=normal.jpg
+
+# the area with the position indicator, transparent
+[panel.positiongrid]
+320,0,839,32
+
+# the entire scrollable area, including channel strips 
+# and region area for all channels, transparent:
+[panel.workarea]
+0,32,1159,480
+
+# the area covering all channelstrips, transparent:
+[panel.all_channelstrips]
+0,32,320,480
+parent=workarea
+
+# the area with trackname/volume/pan/... (for one track), with background image:
+[panel.channelstrip]
+0,32,320,121
+normal=normal.jpg
+parent=all_channelstrips
+
+# the area covering all regions (scrolls horizontally):
+[panel.all_regions]
+320,32,839,480
+# for testing, with background image:
+normal=normal.jpg
+parent=workarea
+
+# regions for one track, transparent:
+[panel.regions]
+320,32,839,121
+parent=all_regions
+
+############# DEFAULTS
+[default]
+normal=normal.jpg
+hover=hover.jpg
+down=down.jpg
+
+
+############# TOP-LEVEL CONTROLS
+[toggle.snap]
+8,3, 140,28
+# use "normal", "down", and "hover" definitions from [default]
+
+[button.zoomIn]
+257,2, 32,32
+# use "normal", "down", and "hover" definitions from [default]
+
+[button.zoomOut]
+289,2, 32,32
+# use "normal", "down", and "hover" definitions from [default]
+
+
+############# CHANNELSTRIP CONTROLS
+[button.trackUp]
+0,43, 34,21
+# use "normal", "down", and "hover" definitions from [default]
+parent=channelstrip
+
+[button.trackDown]
+0,64, 34,21
+# use "normal", "down", and "hover" definitions from [default]
+parent=channelstrip
+
+[label.trackDisplay]
+38,54, 268,18
+# use "normal", "down", and "hover" definitions from [default]
+parent=channelstrip
+
+[knob.volume_knob1]
+0,0,16,23
+normal=sliders.jpg,25,67
+hover=sliders.jpg,8,67
+down=sliders.jpg,8,67
+# knobs do not need a parent
+
+[knob.volume_knob2]
+0,0,20,20
+normal=MIXBLENDR_volume2.png,0,0
+hover=MIXBLENDR_volume2.png,20,0
+down=MIXBLENDR_volume2.png,20,0
+# knobs do not need a parent
+
+[knob.volume_knob]
+0,0,22,27
+normal=MIXBLENDR_volume3.png,5,4
+hover=MIXBLENDR_volume3.png,25,4
+down=MIXBLENDR_volume3.png,25,4
+# knobs do not need a parent
+
+[trough.volume]
+29, 93, 103, 23
+parent=channelstrip
+# for the level meter
+normal=sliders.jpg,31,8
+down=sliders.jpg,31,8
+hover=sliders.jpg,31,8
+progress=sliders.jpg,31,119
+knob=volume_knob
+tooltip=Scroll to change the track level
+
+[LED.volume_clip]
+141, 96, 23, 19
+# use "normal" definition from [default]
+# use "down" definition from sliders.jpg:
+down=sliders.jpg,134,121
+parent=channelstrip
+
+[trough.pan]
+186,93,103,23
+parent=channelstrip
+normal=sliders.jpg,31,36
+down=sliders.jpg,31,36
+hover=sliders.jpg,31,36
+knob=volume_knob
+tooltip=Scroll to change the track pan
+
+[toggle.mute]
+166,123, 45,23
+# use "normal", "down", and "hover" definitions from [default]
+# also define a blink state
+parent=channelstrip
+
+[toggle.solo]
+215,123, 45,23
+blink=blink.jpg,59,8
+parent=channelstrip
+
+[toggle.auto]
+265,123, 45,23
+blink=blink.jpg,109,8
+parent=channelstrip
+
+############# BUTTON BAR
+
+[button.add]
+16, 527, 62, 50
+# use "normal", "down", and "hover" definitions from [default]
+tooltip=Add a new track
+
+[toggle.grab]
+78, 527, 61, 50
+tooltip=Move regions
+
+[toggle.scissor]
+139, 527, 61, 50
+tooltip=Cut a region
+
+[button.rewind]
+213, 527, 50, 50
+
+[toggle.play]
+263, 527, 50, 50
+tooltip=Pressing this control will start playback
+tooltip.down=Pressing this control will pause playback
+
+[button.fastForward]
+314, 527, 52, 50
+
+[toggle.loop]
+364, 527, 52, 50
+
+[label.transportDisplay]
+445, 539, 109, 30
+
+[edit.tempo]
+560, 539, 56, 13
+tooltip=Edit the tempo
+
+# will just display "TEMPO":
+[label.tempo]
+560, 555, 56, 13
+
+[label.loopDisplay]
+619, 538, 69, 13
+
+# will just display "LOOP ON" or "LOOP OFF":
+[label.loopOnOff]
+619, 555, 69, 13
+
+############# FOR TESTING
+[button.testLoadDef]
+165, 6, 73, 21

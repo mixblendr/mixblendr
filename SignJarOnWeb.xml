@@ -1,0 +1,14 @@
+<project name="CreateSgnedJar" default="mixblendr_signed.jar">
+<target name="mixblendr_signed.jar">
+<signjar jar="U:/htdocs/nervesound/mixblendr.jar"
+signedjar="U:/htdocs/nervesound/mixblendr_signed.jar"
+alias="nervesound"
+keystore="..\Certificate\test.keystore"
+storepass="nssppw"
+keypass="nspwbyfb"
+
+>
+</signjar>
+<echo>Created U:/htdocs/nervesound/mixblendr_signed.jar.</echo>
+</target>
+</project>

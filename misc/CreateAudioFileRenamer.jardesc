@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="E:/Progs/NerveSound/Release/Renamer.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/NerveSound.Mixblendr/misc/CreateAudioFileRenamer.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="false" manifestLocation="/NerveSound.Mixblendr/misc/AudioFileRenamer2Manifest.mf" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.test"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.util{FatalExceptionListener.java"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.util{Utils.java"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.util{Debug.java"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.audio"/>
+    </selectedElements>
+</jardesc>

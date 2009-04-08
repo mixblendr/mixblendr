@@ -1,0 +1,52 @@
+Class AudioOutput (setDevice,open/close)
+ Class Mixer (add/remove track, setSolo)
+  Class Track (volume, pan/balance, mute, getSolo, effects, owns a playlist)
+   Class Playlist (list of timestamped regions and AutoObjects, ref to TimeBase)
+    Class AutoObject (time)
+    Class Region (extends AutoObject, ref to AudioFile, start time in AudioFile, duration, 
+                  will convert samplerate and from mono to stereo)
+Class Player (owns AudioOutput, AudioFileManager, Mixer, owns TimeBase, loop)
+Class TimeBase (get/set current playback pos, connected to mixer for sync with audio device)
+Class AudioState (global settings like number of channels and current playback position)
+
+AudioFileFactory (manages and creates on demand audio file objects)
+ AudioFile (base class for audio files)
+  AudioFileURL (download from http (creating visual preview on the fly), load mp3,ogg,wav)
+
+One common output format: 44100Hz, stereo, 16-bit
+
+issues: 
+
+1) when choosing a different effect, its automation data stays, 
+but it's tied to its AudioEffect class, so when a new AudioEffect 
+instance is created, the old automation data will not work on it.
+Solutions:
+- upon removing an effect, remove all automation data for it, too
+- or, keep AudioEffect instances alive (practical since it will 
+  stay alive anyway by the references held on its AutomationObjects)
+- untie AutomationObject and AudioEffect class, communicate by way 
+  of indirect references
+  
+2) currently, the automation data is identified by its class and
+its track. That prevents multiple instances of the same effect
+on one track.
+
+
+List of 3rd party components used in the mixblendr applet.
+
+Tritonus project, http://www.tritonus.org, LGPL:
+tritonus_share.jar    [basic audio functionality]
+tritonus_src.jar      [sample rate converter]
+tritonus_jorbis.jar   [access to jogg and jorbis below]
+tritonus_mp3.jar      [only required for mp3 support]
+
+JavaLayer, LGPL: (only required for mp3):
+javalayer.jar         [mp3 decoder]
+
+ogg/vorbis, http://www.vorbis.com/, BSD style license
+jogg.jar              [ogg decoder]
+jorbis.jar            [vorbis reader]
+
+Waveform component, Bome Software, licensed to Mixblendr LLC
+4 classes in com.mixblendr.gui.graph:
+  Graph, GraphSection, GraphSelection, GraphTimer

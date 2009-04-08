@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="E:/Progs/NerveSound/Release/mixblendr.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/NerveSound.Mixblendr/CreateReleaseJar.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="false" manifestLocation="/NerveSound.Mixblendr/Manifest.mf" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/NerveSound.Mixblendr/skins/main/skin.txt"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.effects"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.automation"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.gui.main"/>
+        <file path="/NerveSound.Mixblendr/skins/main/MIXBLENDR_UP.png"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.audio"/>
+        <file path="/NerveSound.Mixblendr/skins/main/MIXBLENDR_OVR.png"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.test{AudioFileRenamer.java"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.skin"/>
+        <file path="/NerveSound.Mixblendr/skins/main/MIXBLENDR_special.png"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.gui.graph"/>
+        <javaElement handleIdentifier="=NerveSound.Mixblendr/src&lt;com.mixblendr.util"/>
+        <file path="/NerveSound.Mixblendr/skins/main/MIXBLENDR_DN.png"/>
+    </selectedElements>
+</jardesc>

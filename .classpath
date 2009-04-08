@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="E:/Tritonus/EclipseProject/tritonus/dist/tritonus_share-0.3.7.jar" sourcepath="E:/Tritonus/EclipseProject/tritonus/src/classes"/>
+	<classpathentry kind="lib" path="E:/Tritonus/EclipseProject/tritonus/dist/tritonus_mp3-0.3.7.jar"/>
+	<classpathentry kind="lib" path="E:/Tritonus/EclipseProject/tritonus/dist/tritonus_src-0.3.7.jar" sourcepath="E:/Tritonus/EclipseProject/tritonus/src/classes"/>
+	<classpathentry kind="lib" path="E:/JDKs/libs/javalayer.jar"/>
+	<classpathentry kind="lib" path="E:/Tritonus/EclipseProject/tritonus/dist/tritonus_jorbis-0.3.7.jar"/>
+	<classpathentry kind="lib" path="E:/JDKs/libs/jorbis-0.0.15.jar"/>
+	<classpathentry kind="lib" path="E:/JDKs/libs/jogg-0.0.7.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

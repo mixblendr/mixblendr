@@ -1,0 +1,271 @@
+This is the specification for the file format of the GUI definition.
+
+The file is a simple text file. Comment lines start with a # sign.
+
+# [Control Type.Name]
+Each control definition starts with the type.name of the control in 
+square brackets, e.g. [button.play] or [trough.volume]. 
+There are 8 types: 
+  1. panel
+  2. button
+  3. toggle
+  4. trough
+  5. knob
+  6. LED
+  7. edit
+  8. label
+
+# Position and Dimension
+The [type.name] line is followed by a line with the position 
+and dimension where to place it on the GUI (x, y, w, h)=(left, top, 
+width, height). 0,0 is top left corner of the main panel. e.g.
+  10,10,500,300
+
+# Control States
+Then, for each state of the control, there is one line with 
+the definition where to take that image from, and where in 
+that image it can be found.
+  normal=<image filename>, x, y     [normal view]
+  hover=<image filename>, x, y      [mouse over, normal]
+  down=<image filename>, x, y       [pressed, or checked, or "on" for LEDs]
+  hover.down=<image filename>, x, y [mouse over, down]
+  blink=<image filename>, x, y      [for blinking controls like solo]
+  progress=<image filename>, x, y   [for slider troughs]
+
+Here, "x,y" is the position where the control can 
+be found in <image filename>. <image filename> is a relative path, 
+usually just the filename without any directory name.
+
+You can omit the (x,y) position if it's equal to the position of the
+control in the GUI.
+
+Not all states apply to all types. Edit and labels don't have any states.
+
+# Additional control properties
+All controls can get one or 2 tooltips:
+  tooltip=Pressing this control will start playback
+  tooltip.down=Pressing this control will pause playback
+
+In order to specify the name of the font for labels and edit controls,
+use this statement:
+  font=<font name>
+
+For troughs of sliders, there is no need to specify any 
+state images except for the optional progress image. But you need 
+to specify the knob name:
+  knob=<name of knob definition in this file>
+
+Controls are placed into a panel by specifying the panel name
+as the parent with the following line:
+  parent=<name fo containing panel>
+You can only reference panels that are defined before the
+control referencing the panel.
+Controls without a parent are placed on the master panel.
+Only one panel, the master panel, can be specified without a parent.
+There must be exactly one master panel.
+Specify -1 for the x and y position in order to not display the
+control. This is useful for controls that are only used internally
+(e.g. the panel.wave_container controls for the Mixblendr main GUI).
+
+# Resizable Background Image
+You can specify 3 images for panels that can grow horizontally.
+For that, specify three state images instead of the NORMAL state image:
+  bg_left=<image filename>, x, y    
+  bg_lr_tile=<image filename>, x, y
+  bg_right=<image filename>, x, y
+The left image is painted on the far left of the control, the right
+image on the far right side. In between, the bg_lr_tile image is
+repeatedly painted to fill the entire space. The width of bg_left
+is computed by taking the difference of the x positions of bg_lr_tile
+and bg_left; the width of the tile's source image is derived by
+the difference of the x positions of bg_right and bg_lr_tile; the
+width of bg_right is taken as the remaining space (given the width
+of the control) when bg_left and bg_lr_tile are already painted.
+
+# Notes by Control
+1. panel
+A panel is a container for other controls or panels ("child controls"). 
+This is useful for layout purposes, or to signal the application a 
+certain hierarchy. In order to place child controls in a panel, add 
+the "parent" property to the control, e.g.
+  parent=mainpanel
+If you do not specify a "normal" state image for a panel, it'll be
+transparent, which is often useful to minimize necessary drawing
+operations.
+Possible states: normal
+
+2. button
+Buttons are clickable controls that issue an event when clicked.
+Possible states: normal, hover, down, hover.down, blink
+
+3. toggle
+A toggle is a button that toggles between down state and "normal" 
+state with each click to it. Checkboxes are implemented with toggles.
+Possible states: normal, hover, down, hover.down, blink
+
+4. trough
+A trough is the non-moving part of a slider. Sliders are defined by 
+their dimensions of the trough and the name of the knob.
+The knob is defined as an own control so that you can specify different 
+state images for the knob, and so that one knob can be shared with 
+different sliders.
+If a progress image is specified for the trough, it will be used as
+an indicator of the actual value (rather than the value set with the 
+knob), e.g. as a level meter.
+Possible states: normal, hover, down, hover.down, blink, progress
+
+5. knob
+Knobs are like normal controls, except that they are not displayed 
+on their own, but on top of the trough that references it. So
+specifying a parent panel for a knob will be ignored.
+Possible states: normal, hover, down, hover.down, blink
+
+6. LED
+LED is like a button, except that it's not interactive and 
+cannot be directly modified by mouse actions.
+Possible states: normal, down, blink
+
+7. edit
+Edit is a field which the user can edit (tempo, loop).
+Possible states: (none)
+
+8. label
+Label is a field where something is displayed depending on 
+state, e.g. the effect selector is a label, and the "LOOP OFF" 
+indicator.
+Possible states: (none)
+
+# The master panel
+There must be exactly one panel named "panel.master" which does not 
+specify a parent and which will define the size of the entire GUI. Its 
+"normal" state image will therefore be used as global background for 
+the entire GUI.
+The position (x,y) of the master panel will be ignored, it's the 
+top left corner of the applet.
+The master panel is the required first control of the definition file.
+
+# The [default] Section
+In order to facilitate editing, you can define default state images in a 
+[default] section. A default section only provides defaults for following
+control definitions. You can specify multiple default sections, where
+the later one will override the former default section.
+If, for a specific control, you want to override a default value, simply
+specify the specific state image in the control definition which will
+override the default value. If you want to remove an image for a certain
+state, but the image is defined in the default section, remove the state 
+image by specifying it with white space after the equal sign:
+   hover=
+will remove the [default] definition for that specific control.
+
+# The [global] Section
+This section defines the global definitions that are free form
+"key=value". There are no standardized properties you need to specify
+here.
+e.g.:
+  window.title=An effects window
+
+# Here is a commented example file:
+
+############# GENERAL LAYOUT
+# the required master panel: contains everything else.
+[panel.master]
+0,0,1159,597
+normal=normal.jpg
+
+# the area with the position indicator, transparent
+[panel.positiongrid]
+320,0,839,32
+
+# the entire scrollable area, including channel strips 
+# and region area for all channels, transparent:
+[panel.workarea]
+0,32,1159,480
+
+# the area covering all channelstrips, transparent:
+[panel.all_channelstrips]
+0,32,320,480
+parent=workarea
+
+# the area with trackname/volume/pan/... (for one track)
+# (with background image):
+[panel.channelstrip]
+0,32,320,121
+normal=normal.jpg
+parent=all_channelstrips
+
+# the area covering all regions (scrolls horizontally):
+[panel.all_regions]
+320,32,839,480
+# for testing, with background image:
+normal=normal.jpg
+parent=workarea
+
+# regions for one track, transparent:
+[panel.regions]
+320,32,839,121
+parent=all_regions
+
+############# CONTROL DEFINITIONS
+
+# define the 3 standard states as the default for all control
+# definitions below here.
+[default]
+normal=normal.jpg
+hover=hover.jpg
+down=down.jpg
+
+[button.play]
+50, 400, 30, 15
+# use "normal", "down", and "hover" definitions from [default]
+tooltip=Pressing this control will start playback
+tooltip.down=Pressing this control will pause playback
+#use master parent
+
+[knob.volume_knob]
+10,30,10,10
+# do not use a normal image for the knob (i.e. do 
+# not display it unless hovered or pressed)
+normal=
+hover=knob.jpg,10,0
+down=knob.jpg,20,0
+# no parent necessary
+
+[trough.volume]
+10, 30, 100, 10
+# for the level meter
+progress=volume.jpg,0,0
+knob=volume_knob
+tooltip=Scroll to change the track level
+parent=channelstrip
+
+[LED.volume_clip]
+100, 30, 10, 10
+# use "normal" and "down" definitions from [default]
+parent=channelstrip
+
+[knob.pan_knob]
+10,30,10,10
+normal=knob.jpg,0,0
+hover=knob.jpg,10,0
+down=knob.jpg,20,0
+
+[trough.pan]
+110, 30, 100, 10
+knob=pan_knob
+tooltip=Scroll to change the track pan
+parent=channelstrip
+
+[button.solo]
+50, 30, 20, 10
+# use "normal", "down", and "hover" definitions from [default]
+# also define a blink state
+blink=solo_blink.jpg,0,0
+parent=channelstrip
+
+[edit.tempo]
+200, 500, 30, 10
+font=Helvetica
+tooltip=Click to edit the tempo
+
+[label.loopstate]
+250, 500, 40, 10
